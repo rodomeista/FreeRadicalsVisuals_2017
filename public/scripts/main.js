@@ -6,8 +6,18 @@ const SOCKET_EVENTS = {
 
 $(function() {
   var socket = io();
-  socket.emit(SOCKET_EVENTS.USER_CONNECT, 'Addison Rodomista');
+  var socket = io();
+  
+  
+  
   socket.on(SOCKET_EVENTS.USER_CONNECT, function(username) {
     $("#user_container").append($('<li>').text(username));
   });
+  //TODO(arodomista): Implement a way to disconnect users.
+//   socket.on(SOCKET_EVENTS.USER_DISCONNECT, function())
+
+  $("#loginButton").on('click', (event) => {
+      const username = $("#usernameInput").val();
+      socket.emit(SOCKET_EVENTS.USER_CONNECT, username);  
+  })
 });

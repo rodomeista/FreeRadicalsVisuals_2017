@@ -18,7 +18,7 @@ audioCtrl.get('/spiral', function(req, res, next) {
 });
 
 audioCtrl.get('/', function(req, res, next) {
-  res.render('sphere',{ title: 'Sphere'});
+  res.render('index',{ title: 'Free Radicals'});
 });
 
 module.exports = audioCtrl;

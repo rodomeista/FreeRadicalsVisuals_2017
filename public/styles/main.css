@@ -114,4 +114,34 @@ a, a:active, a:hover, a:visited{
   background: transparent url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==) 6px 10px no-repeat !important;
 }
 
+#loginPage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+#loginContainer {
+  color: white;
+  display: flex;
+  flex-flow: column;
+  border: 2px solid white;
+  width: 500px;
+  height: auto;
+  padding: 20px;
+}
+
+#usernameInput {
+  width: 100%;
+  padding: 20px;
+}
+
+#loginButton {
+  margin-top: 20px;
+  width: 100%;
+  padding: 20px;
+}

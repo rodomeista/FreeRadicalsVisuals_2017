@@ -13,6 +13,14 @@ var mouseX = 0, mouseY = 0,
 var camera, scene, renderer;
 
 function init() {
+
+    // Create socket IO connection to share with landing page
+    var socket = io();
+    socket.on(SOCKET_EVENTS.USER_CONNECT, function(username) {
+        console.log(username);
+      $("#user_container").append($('<li>').text(username));
+    });
+
     scene = new THREE.Scene();
     var width = window.innerWidth;
     var height = window.innerHeight;

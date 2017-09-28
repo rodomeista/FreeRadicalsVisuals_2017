@@ -42,17 +42,25 @@ app.use(function(req, res, next) {
 
 const USER_CONNECT = 'USER_CONNECT';
 const USER_DISCONNECT = 'USER_DISCONNECT';
+let currentUserCount = 0;
 
+
+let userList = {};
 io.on('connection', function(socket) {
-  io.emit(USER_CONNECT, { for: 'everyone' });
+  var userId;
   //TOOD(arodomista): Include avatar?
   socket.on(USER_CONNECT, function(username){
-    console.log('a user connected 👋🏼');
-    io.emit(USER_CONNECT, username);
+    userId = ++currentUserCount;
+    userList[currentUserCount] = username;
+    console.log('a user connected 👋🏼', username);
+    io.emit(USER_CONNECT, `${ currentUserCount }) ${ username }`);
   });
 
   // Disconnect user from socket app
   socket.on(USER_DISCONNECT, function(){
+    currentUserCount--;
+    delete userList[userId];
+    io.emit(USER_DISCONNECT, userId);
     console.log('user disconnected ☠️');
   });
 });
