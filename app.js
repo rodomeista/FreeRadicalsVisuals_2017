@@ -1,4 +1,5 @@
 var express = require('express');
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -7,8 +8,9 @@ var bodyParser = require('body-parser');
 
 var controllers = require('./controllers/index');
 var audioapp = require('./controllers/audio');
-
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +39,28 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+const USER_CONNECT = 'USER_CONNECT';
+const USER_DISCONNECT = 'USER_DISCONNECT';
+
+io.on('connection', function(socket) {
+  io.emit(USER_CONNECT, { for: 'everyone' });
+  //TOOD(arodomista): Include avatar?
+  socket.on(USER_CONNECT, function(username){
+    console.log('a user connected 👋🏼');
+    io.emit(USER_CONNECT, username);
+  });
+
+  // Disconnect user from socket app
+  socket.on(USER_DISCONNECT, function(){
+    console.log('user disconnected ☠️');
+  });
+});
+
+
+http.listen(3000, function() {
+  console.log('listening on 3000');
+})
 
 // error handlers
 

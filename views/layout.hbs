@@ -15,7 +15,8 @@
       <script src="/scripts/OrbitControls.js"></script>
       <script src="/scripts/CanvasRenderer.js"></script>
       <script src="/scripts/Projector.js"></script>
-
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+      <script src = "/scripts/main.js"></script>
   </head>
   <body>
   <nav id="nav">
@@ -25,32 +26,10 @@
           <li><a href="/square">SQUARE</a></li>
           <li><a href="/waveform">WAVE</a></li>
           <li><a href="/line">LINE</a></li>
-
       </ul>
+      <div id="user_container">
+      </div>
   </nav>
     {{{body}}}
-  <script>
-      var nav = true;
-      function onKeyDown(e) {
-          switch (e.which) {
-              case 78:
-                  if(!nav){
-                      $('nav').css('visibility','visible');
-                      nav = !nav;
-                  }
-                  else {
-                      $('nav').css('visibility','hidden');
-                      nav = !nav;
-                  }
-          }
-      }
-      document.addEventListener('keydown', onKeyDown, false);
-      $('#notification').velocity('fadeIn', { delay: 150, duration: 1500 });
-      console.log('press "n" to toggle nav bar \n' +
-              'press "c" to toggle controls');
-//      var stats = new Stats();
-//      stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
-//      document.body.appendChild( stats.dom );
-  </script>
   </body>
 </html>
