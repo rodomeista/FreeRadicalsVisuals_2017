@@ -2,7 +2,7 @@
 const date = new Date();
 
 // Remove the assesio logo at 11pm
-const HOUR_TO_EXPIRE_IMAGE = 16;
+const HOUR_TO_EXPIRE_IMAGE = 23;
 
 function removeLogoInterval() {
   const imgContainer = document.querySelector("#image-container");
