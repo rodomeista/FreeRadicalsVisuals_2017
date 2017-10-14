@@ -158,4 +158,5 @@ a, a:active, a:hover, a:visited{
 
 .viz-container .viz {
   position: absolute;
+  opacity:.8;
 }
