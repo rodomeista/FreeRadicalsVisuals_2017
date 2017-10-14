@@ -16,8 +16,9 @@ body {
 }
 
 #image-container {
-  transform: scale(0.5);
-  opacity: 0.5;
+  transform: scale(0.45);
+  opacity: 0.95;
+  z-index: 9999999;
 }
 
 canvas{
