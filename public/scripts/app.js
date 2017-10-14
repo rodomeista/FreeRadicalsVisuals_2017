@@ -18,7 +18,7 @@ function createViz(id, audio, config) {
   config = config || {}
   config.dom = '#viz-' + id;
   $('body').css({
-    background: '#550000'
+    background: '#000000'
   });
 
   config.position = config.position || {};
