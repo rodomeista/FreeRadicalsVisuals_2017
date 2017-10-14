@@ -1,23 +1,17 @@
-var nav = true;
-const SOCKET_EVENTS = {
-    USER_CONNECT: 'USER_CONNECT',
-    USER_DISCONNECT: 'USER_DISCONNECT'
-};
+// Date for removing image container
+const date = new Date();
 
-$(function() {
-  var socket = io();
-  var socket = io();
-  
-  
-  
-  socket.on(SOCKET_EVENTS.USER_CONNECT, function(username) {
-    $("#user_container").append($('<li>').text(username));
-  });
-  //TODO(arodomista): Implement a way to disconnect users.
-//   socket.on(SOCKET_EVENTS.USER_DISCONNECT, function())
+// Remove the assesio logo at 11pm
+const HOUR_TO_EXPIRE_IMAGE = 16;
 
-  $("#loginButton").on('click', (event) => {
-      const username = $("#usernameInput").val();
-      socket.emit(SOCKET_EVENTS.USER_CONNECT, username);  
-  })
-});
+function removeLogoInterval() {
+  const imgContainer = document.querySelector("#image-container");
+  if (imgContainer == null) return;
+  const currentHour = date.getHours();
+  // Either remove the image, or re-trigger the interval
+  (currentHour >= HOUR_TO_EXPIRE_IMAGE) ?
+    imgContainer.remove() :
+    setTimeout(removeLogoInterval, 50000);
+}
+
+window.onload = removeLogoInterval;
